@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fs-api  
+spec:
+  selector:
+    matchLabels:
+      app: fs-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fs-api
+    spec:            
+      containers:
+      - name: fs-api-container
+        image: firststeps:latest
+        imagePullPolicy: Never                       
+        ports:
+        - containerPort: 5297
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
